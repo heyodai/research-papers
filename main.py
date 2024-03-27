@@ -37,14 +37,14 @@ GOOGLE_DRIVE_PATH = '/Users/odai/Library/CloudStorage/GoogleDrive-heyodai@gmail.
 
 
 # # Get CLI argument of URL
-# parser = argparse.ArgumentParser()
-# parser.add_argument("url", help="URL of the Emergent Mind paper")
-# args = parser.parse_args()
+parser = argparse.ArgumentParser()
+parser.add_argument("url", help="URL of the Emergent Mind paper")
+args = parser.parse_args()
 
-# Demo for Jupyter development
-args = argparse.Namespace()
-args.url = 'https://www.emergentmind.com/papers/2403.14562'
-args
+# # Demo for Jupyter development
+# args = argparse.Namespace()
+# args.url = 'https://www.emergentmind.com/papers/2403.14562'
+# args
 
 
 # In[3]:
