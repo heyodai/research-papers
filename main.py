@@ -8,11 +8,14 @@ import pandas as pd
 import argparse
 import requests
 import re
+import os
 import datetime
 from bs4 import BeautifulSoup
 from openpyxl import Workbook
+from dotenv import load_dotenv
 
-GOOGLE_DRIVE_PATH = '/Users/odai/Library/CloudStorage/GoogleDrive-heyodai@gmail.com/My Drive'
+load_dotenv()
+GOOGLE_DRIVE_PATH = os.getenv("GOOGLE_DRIVE_PATH")
 
 
 # In[2]:
