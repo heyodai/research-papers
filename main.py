@@ -41,6 +41,7 @@ GOOGLE_DRIVE_PATH = '/Users/odai/Library/CloudStorage/GoogleDrive-heyodai@gmail.
 # Get CLI argument of URL
 parser = argparse.ArgumentParser()
 parser.add_argument("url", help="URL of the Emergent Mind paper")
+parser.add_argument("--notes", help="Notes for the paper")
 args = parser.parse_args()
 
 # # Demo for Jupyter development
@@ -158,7 +159,7 @@ for h3 in soup.find_all("h3"):
 abstract
 
 
-# In[ ]:
+# In[14]:
 
 
 # Write data to dataframe
