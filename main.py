@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[4]:
+# In[1]:
 
 
 import pandas as pd
@@ -38,7 +38,7 @@ GOOGLE_DRIVE_PATH = os.getenv("GOOGLE_DRIVE_PATH")
 # df.head()
 
 
-# In[5]:
+# In[2]:
 
 
 # Get CLI argument of URL
@@ -49,12 +49,12 @@ args = parser.parse_args()
 
 # # Demo for Jupyter development
 # args = argparse.Namespace()
-# args.url = 'https://www.emergentmind.com/papers/2403.14562'
+# args.url = 'https://www.emergentmind.com/papers/2404.01810'
 # args.notes = 'This is a test note'
 # args
 
 
-# In[6]:
+# In[3]:
 
 
 # Load the excel file
@@ -62,7 +62,7 @@ df = pd.read_excel(f"{GOOGLE_DRIVE_PATH}/arxiv_papers.xlsx")
 df.head()
 
 
-# In[7]:
+# In[4]:
 
 
 # Load the URL into a BeautifulSoup object
@@ -71,7 +71,7 @@ soup = BeautifulSoup(response.content, "html.parser")
 soup
 
 
-# In[8]:
+# In[5]:
 
 
 # Get the title from soup
@@ -86,7 +86,7 @@ title = soup.find("h1").text.strip()
 title
 
 
-# In[10]:
+# In[6]:
 
 
 # Get the Arxiv ID
@@ -110,7 +110,7 @@ arxiv_url = f"https://arxiv.org/abs/{arxiv_id}"
 em_url = f"https://www.emergentmind.com/papers/{arxiv_id}"
 
 
-# In[11]:
+# In[16]:
 
 
 # Find the publication date
@@ -136,14 +136,18 @@ em_url = f"https://www.emergentmind.com/papers/{arxiv_id}"
 date = None
 for div in soup.find_all("div"):
     if "Published" in div.text:
-        match = re.search(r"Published (\w+ \d{1,2}, \d{4})", div.text)
+        match = re.search(r"Published (\w+\s+\d{1,2}, \d{4})", div.text)
         if match:
             date = match.group(1)
         break
     
 # This comes out like 'Mar 21, 2024', so we can parse it with datetime
-date = datetime.datetime.strptime(date, "%b %d, %Y").date()
-date = date.strftime("%Y-%m-%d")
+try:
+    date = datetime.datetime.strptime(date, "%b %d, %Y").date()
+    date = date.strftime("%Y-%m-%d")
+except:
+    print("Could not parse date")
+    
 date
 
 
